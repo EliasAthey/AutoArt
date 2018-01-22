@@ -23,6 +23,7 @@ public class Painter extends PApplet{
     /**
      * The settings for the output image
      */
+    @Override
     public void settings(){
         size(1000,1000);
     }
@@ -30,6 +31,7 @@ public class Painter extends PApplet{
     /**
      * Initial drawing, called once
      */
+    @Override
     public void setup(){
         background(255);
     }
@@ -37,6 +39,7 @@ public class Painter extends PApplet{
     /**
      * Repeated drawing, called every frame
      */
+    @Override
     public void draw(){
         background((int)(Math.random() * 256)); // this will cause seizures!
     }
