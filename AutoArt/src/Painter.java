@@ -10,6 +10,22 @@ import processing.core.PApplet;
 public class Painter extends PApplet{
 
     /**
+     * The Painter's tools
+     */
+    private Background background;
+    private Structure structure;
+    private Texture texture;
+
+    /**
+     * Private constructor that creates the painter and tools
+     */
+    private Painter(){
+        this.background = new Background();
+        this.structure = new Structure();
+        this.texture = new Texture();
+    }
+
+    /**
      * The start of everything.
      * @param args unused
      */
@@ -25,7 +41,7 @@ public class Painter extends PApplet{
      */
     @Override
     public void settings(){
-        size(1000,1000);
+        size(500,500);
     }
 
     /**
@@ -33,14 +49,9 @@ public class Painter extends PApplet{
      */
     @Override
     public void setup(){
-        background(255);
-    }
-
-    /**
-     * Repeated drawing, called every frame
-     */
-    @Override
-    public void draw(){
-        background((int)(Math.random() * 256)); // this will cause seizures!
+        this.background.paintBackground(this);
+        Flow flow = this.structure.createStructure();
+        this.texture.paintTexture(this, flow);
+        save("img.jpg");
     }
 }
