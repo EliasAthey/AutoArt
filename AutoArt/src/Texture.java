@@ -47,5 +47,6 @@ public class Texture {
      */
     public void paintTexture(Painter painter, Flow flow){
         painter.line(0,0, painter.width, painter.height);
+        painter.line(0, painter.height, painter.width, 0);
     }
 }
