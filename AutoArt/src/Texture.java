@@ -18,19 +18,10 @@ public class Texture {
     private int shapeRadius;
 
     /**
-     * The variance in shape
+     * The colors of the shapes
      */
-    private float shapeDiversity;
-
-    /**
-     * The minimum pixel-spacing between shapes
-     */
-    private int spacing;
-
-    /**
-     * The base color of the shapes
-     */
-    private int[] color = new int[3];
+    private int[] firstColor = new int[3];
+	private int[] secondColor = new int[3];
 
     /**
      * The variance in color of the shapes

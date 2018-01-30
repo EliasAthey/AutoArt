@@ -8,14 +8,15 @@
 public class Background {
 
     /**
-     * The base color of the background
+     * The colors of the background
      */
-    private int[] color = new int[3];
+    private int[] firstColor = new int[3];
+	private int[] secondColor = new int[3];
 
-    /**
-     * The amount that the color varies
-     */
-    private float colorDiversity;
+	/**
+	 * The value (brightness) of the background
+	 */
+	private float value;
 
     /**
      * How strong/steep the gradient is

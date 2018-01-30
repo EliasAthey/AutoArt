@@ -7,6 +7,16 @@
  */
 public class Structure {
 
+	/**
+	 * Number of edges used for the structure's Flow
+	 */
+	private int numEdges;
+
+	/**
+	 * The pixel-length of each edge
+	 */
+	private int spacing;
+
     /**
      * Creates the structure of the image by creating a Flow
      * @return the flow of the image; how the texture will be painted
