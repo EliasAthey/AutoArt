@@ -88,9 +88,6 @@ public class Painter extends PApplet{
         PApplet.runSketch(
                 new String[]{"Painter"},
                 painter);
-
-        // exit successfully
-        System.exit(0);
     }
 
     /**
@@ -173,6 +170,5 @@ public class Painter extends PApplet{
         Flow flow = this.structure.createStructure();
         this.texture.paintTexture(this, flow);
         save("img.jpg");
-	    Shape
     }
 }
