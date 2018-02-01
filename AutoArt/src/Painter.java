@@ -27,46 +27,51 @@ public class Painter extends PApplet{
     /**
      * Path to parameter file
      */
-    private final String paramFilePath = "./params.aa";
+    private final String paramFilePath = "params.aa";
+
+    /**
+     * The size of the character buffer used to read the parameter file
+     */
+    private final int numCharsInParamFile = 100;
 
 	/**
 	 * A mapping from line numbers in the parameter file to associated attribute names
 	 */
-	private final HashMap fileFormat = new HashMap(){
+	private final HashMap<Integer, String> fileFormat = new HashMap<Integer, String>(){
 	    {
             // 3rd place color
 	        put(0, "bg_FirstColor");// int,int,int [0,255]
 
             // 4th place color
-            put(2, "bg_SecondColor");// int,int,int [0,255]
+            put(1, "bg_SecondColor");// int,int,int [0,255]
 
             // value light
-            put(3, "bg_Value");// float [0,1]
+            put(2, "bg_Value");// float [0,1]
 
             // space depth (?)
-            put(4, "bg_Intensity");// float [0,1]
+            put(3, "bg_Intensity");// float [0,1]
 
             // structure line iterations (I think we should randomize the start pt and vertex pts)
-            put(5, "st_NumEdges");// int
+            put(4, "st_NumEdges");// int
 
             // negative space
-            put(6, "st_Spacing");// int (pixels)
+            put(5, "st_Spacing");// int (pixels)
 
             // form
-            put(7, "tx_Shape");// string
+            put(6, "tx_Shape");// string
 
             // positive space
-            put(8, "tx_ShapeRadius");// int (pixels)
+            put(7, "tx_ShapeRadius");// int (pixels)
 
             // 1st place color
-            put(9, "tx_FirstColor");// int,int,int [0,255]
+            put(8, "tx_FirstColor");// int,int,int [0,255]
 
             // 2nd place color
-            put(10, "tx_SecondColor");// int,int,int [0,255]
+            put(9, "tx_SecondColor");// int,int,int [0,255]
 
             // roughness (unsure what's meant by invented and visual)
-            put(11, "tx_ColorDiveristy");// float [0,1]
-            put(12, "tx_Intensity");// float [0,1]
+            put(10, "tx_ColorDiveristy");// float [0,1]
+            put(11, "tx_Intensity");// float [0,1]
 	    }
 	};
 
@@ -85,30 +90,31 @@ public class Painter extends PApplet{
      */
     public static void main(String args[]){
         Painter painter = new Painter();
+        painter.setParams();
         PApplet.runSketch(
                 new String[]{"Painter"},
                 painter);
     }
 
     /**
-     * Sets the attributes of the Painter's tools
-     * @return true if the operation was successful, false otherwise
+     * Reads the parameters file and sets attributes
      */
     private void setParams(){
+        File paramFile = null;
         try{
-            File paramFile = new File(paramFilePath);
+            paramFile = new File(paramFilePath);
             FileReader paramReader = new FileReader(paramFile);
-            while(paramReader.ready()){
-                /**
-                 * TODO
-                 *
-                 * Iterate through lines, passing each line value and associated attribute name to setParam method
-                 * close reader
-                 */
+            char[] fileContents = new char[this.numCharsInParamFile];
+            if(paramReader.ready()){
+                paramReader.read(fileContents);
+            }
+            String[] lines = String.copyValueOf(fileContents).split("\n");
+            for(int lineIter = 0; lineIter < lines.length; lineIter++){
+                this.setParam(lines[lineIter], this.fileFormat.get(lineIter));
             }
         }
         catch(FileNotFoundException e){
-            System.err.println("Param file not found.\n");
+            System.err.println("Param file not found at " + paramFile.getAbsolutePath() + ".\n");
             System.exit(1);
         }
         catch(IOException e){
@@ -118,7 +124,7 @@ public class Painter extends PApplet{
     }
 
     /**
-     * Sets an attribute of the Painter's tools
+     * Sets a single attribute of the Painter's tools
      * @param valueText the value of the parameter
      * @param paramText the associated parameter name - see fileFormat
      */
@@ -137,18 +143,18 @@ public class Painter extends PApplet{
                 break;
         }
         try {
-            tool.getClass().getMethod("get" + param[1]).invoke(valueText);
+            tool.getClass().getMethod("set" + param[1], String.class).invoke(tool, valueText);
         }
         catch(NoSuchMethodException e){
-            System.err.println("Invoking get" + param[1] + " on " + tool.getClass().toString() + " failed.\nNo such method.\n");
+            System.err.println("Invoking set" + param[1] + " on " + tool.getClass().toString() + " failed.\nNo such method.\n");
             System.exit(3);
         }
         catch(IllegalAccessException e){
-            System.err.println("Invoking get" + param[1] + " on " + tool.getClass().toString() + " failed.\nIllegal access.\n");
+            System.err.println("Invoking set" + param[1] + " on " + tool.getClass().toString() + " failed.\nIllegal access.\n");
             System.exit(4);
         }
         catch(InvocationTargetException e){
-            System.err.println("Invoking get" + param[1] + " on " + tool.getClass().toString() + " failed.\nInvocation target exception.\n");
+            System.err.println("Invoking set" + param[1] + " on " + tool.getClass().toString() + " failed.\nInvocation target exception.\n");
             System.exit(5);
         }
     }
