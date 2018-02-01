@@ -34,4 +34,12 @@ public class Background {
     public void paintBackground(Painter painter){
         painter.background(100, 200, 100);
     }
+
+	/**
+	 * Sets the color given a string of RGB values
+	 * @param rgb comma separated RGB values
+	 */
+	public void setFirstColor(String rgb){
+
+    }
 }
