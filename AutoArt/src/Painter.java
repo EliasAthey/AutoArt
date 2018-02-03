@@ -25,6 +25,12 @@ public class Painter extends PApplet{
     private Texture texture;
 
     /**
+     * The size of the Painter's canvas
+     */
+    private final int canvasWidth = 200;
+    private final int canvasHeight = 160;
+
+    /**
      * Path to parameter file
      */
     private final String paramFilePath = "params.aa";
@@ -70,7 +76,7 @@ public class Painter extends PApplet{
             put(9, "tx_SecondColor");// int,int,int [0,255]
 
             // roughness (unsure what's meant by invented and visual)
-            put(10, "tx_ColorDiveristy");// float [0,1]
+            put(10, "tx_ColorDiversity");// float [0,1]
             put(11, "tx_Intensity");// float [0,1]
 	    }
 	};
@@ -157,6 +163,22 @@ public class Painter extends PApplet{
             System.err.println("Invoking set" + param[1] + " on " + tool.getClass().toString() + " failed.\nInvocation target exception.\n");
             System.exit(5);
         }
+    }
+
+    /**
+     * Gets the width of the Painter's canvas
+     * @return the pixel-width
+     */
+    public int getCanvasWidth() {
+        return canvasWidth;
+    }
+
+    /**
+     * Gets the height of the Painter's canvas
+     * @return the pixel-height
+     */
+    public int getCanvasHeight() {
+        return canvasHeight;
     }
 
     /**

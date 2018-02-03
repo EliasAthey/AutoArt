@@ -24,4 +24,20 @@ public class Structure {
     public Flow createStructure(){
         return null;
     }
+
+	/**
+	 * Sets the number of edges used in the Flow
+	 * @param numEdges the number of edges
+	 */
+	public void setNumEdges(String numEdges){
+
+    }
+
+	/**
+	 * Sets the size of spacing between texture objects
+	 * @param spacing the spacing as pixel-width
+	 */
+	public void setSpacing(String spacing){
+
+    }
 }
