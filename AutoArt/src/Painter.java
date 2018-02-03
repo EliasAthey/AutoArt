@@ -170,7 +170,7 @@ public class Painter extends PApplet{
      * @return the pixel-width
      */
     public int getCanvasWidth() {
-        return canvasWidth;
+        return this.canvasWidth;
     }
 
     /**
@@ -178,7 +178,7 @@ public class Painter extends PApplet{
      * @return the pixel-height
      */
     public int getCanvasHeight() {
-        return canvasHeight;
+        return this.canvasHeight;
     }
 
     /**

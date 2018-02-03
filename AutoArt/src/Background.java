@@ -24,11 +24,6 @@ public class Background {
     private float intensity;
 
     /**
-     * The direction of the gradient
-     */
-    private int[] gradient = new int[2];
-
-    /**
      * Paints the background
      */
     public void paintBackground(Painter painter){
@@ -40,7 +35,10 @@ public class Background {
 	 * @param rgb comma separated RGB values
 	 */
 	public void setFirstColor(String rgb){
-
+		String[] values = rgb.split(",");
+		this.firstColor[0] = Integer.parseInt(values[0]);
+		this.firstColor[1] = Integer.parseInt(values[1]);
+		this.firstColor[2] = Integer.parseInt(values[2]);
     }
 
 	/**
@@ -48,7 +46,10 @@ public class Background {
 	 * @param rgb comma separated RGB values
 	 */
 	public void setSecondColor(String rgb){
-
+		String[] values = rgb.split(",");
+		this.secondColor[0] = Integer.parseInt(values[0]);
+		this.secondColor[1] = Integer.parseInt(values[1]);
+		this.secondColor[2] = Integer.parseInt(values[2]);
     }
 
 	/**
@@ -56,7 +57,7 @@ public class Background {
 	 * @param value the value (ligthness)
 	 */
 	public void setValue(String value){
-
+		this.value = Float.parseFloat(value);
     }
 
 	/**
@@ -64,6 +65,6 @@ public class Background {
 	 * @param intensity the intensity (gradient intensity)
 	 */
 	public void setIntensity(String intensity){
-
+		this.intensity = Float.parseFloat(intensity);
     }
 }
