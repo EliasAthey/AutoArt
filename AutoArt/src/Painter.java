@@ -3,8 +3,6 @@
  */
 
 import processing.core.PApplet;
-
-import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -27,8 +25,8 @@ public class Painter extends PApplet{
     /**
      * The size of the Painter's canvas
      */
-    private final int canvasWidth = 200;
-    private final int canvasHeight = 160;
+    private final int canvasWidth = 1080;
+    private final int canvasHeight = 720;
 
     /**
      * Path to parameter file
@@ -186,7 +184,8 @@ public class Painter extends PApplet{
      */
     @Override
     public void settings(){
-        size(500,500);
+        size(this.canvasWidth,this.canvasHeight);
+        pixelDensity(2);
     }
 
     /**
@@ -195,7 +194,7 @@ public class Painter extends PApplet{
     @Override
     public void setup(){
         this.background.paintBackground(this);
-        Flow flow = this.structure.createStructure();
+        Flow flow = this.structure.createStructure(this);
         this.texture.paintTexture(this, flow);
         save("img.jpg");
     }

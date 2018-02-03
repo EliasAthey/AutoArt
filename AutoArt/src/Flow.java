@@ -5,30 +5,28 @@
 import java.util.ArrayList;
 
 /**
- * A container for the Structure's flow
+ * A container for the Structure's flow. The flow is just a path
  */
 public class Flow {
 
     /**
-     * The number of edges in this flow
+     * An ordered list of pixel-positions for this flow
      */
-    private int numEdges;
+    private ArrayList<int[]> points = new ArrayList<>();
 
     /**
-     * The starting pixel-position of this flow
+     * Constructs a Flow given a set of points
+     * @param points the ordered list of x,y coordinates
      */
-    private int[] startPosition = new int[2];
+    public Flow(ArrayList<int[]> points){
+        this.points = points;
+    }
 
     /**
-     * An ordered list of end pixel-positions for each edge in this flow
+     * Gets the ordered list of edge-ending coordinates
+     * @return the end positions
      */
-    private ArrayList<int[]> endPositions = new ArrayList<>();
-
-    /**
-     * Constructs a random flow given a specific number of edges
-     * @param numEdges
-     */
-    public Flow(int numEdges){
-        this.numEdges = numEdges;
+    public ArrayList<int[]> getPoints() {
+        return this.points;
     }
 }

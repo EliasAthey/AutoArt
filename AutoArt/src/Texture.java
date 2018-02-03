@@ -41,8 +41,13 @@ public class Texture {
      * Paints the texture of the image using the flow
      */
     public void paintTexture(Painter painter, Flow flow){
-        painter.line(0,0, painter.width, painter.height);
-        painter.line(0, painter.height, painter.width, 0);
+        painter.stroke(firstColor[0],firstColor[1],firstColor[2]);
+        painter.strokeWeight(3);
+
+        // Do something for each point in the flow
+        for (int[] point : flow.getPoints()) {
+            painter.point(point[0], point[1]);
+        }
     }
 
     /**
