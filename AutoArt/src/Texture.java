@@ -15,7 +15,7 @@ public class Texture {
     /**
      * The pixel-radius of the shapes, defaults to 50
      */
-    private int shapeRadius = 100;
+    private int shapeRadius = 50;
 
     /**
      * The colors of the texture shapes, defaults to white and black respectively
@@ -78,7 +78,10 @@ public class Texture {
 	    }
 	    // else if its just a normal shape, draw a shape at each flow vertex
 	    else{
+    		// shape specific parameters
     		painter.fill(this.firstColor[0], this.firstColor[1], this.firstColor[2]);
+    		painter.noStroke();
+
 		    for (int[] point : flow.getPoints()) {
 			    this.drawShapeAt(painter, point[0], point[1]);
 		    }

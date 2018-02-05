@@ -1,8 +1,8 @@
-25           shape radius
-curve       shape form
-87           background value
-0.67         texture color diversity
-255,0,0      background first color
-0,0,255      background second color
-100,10,100        texture first color
-255,165,0    texture second color
+10           shape radius
+curve        shape form
+125           background value
+0.67          texture color diversity
+255,0,0       background first color
+0,0,255       background second color
+0,0,0         texture first color
+255,165,0     texture second color
