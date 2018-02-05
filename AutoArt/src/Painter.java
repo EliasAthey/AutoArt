@@ -185,7 +185,6 @@ public class Painter extends PApplet{
     @Override
     public void settings(){
         size(this.canvasWidth,this.canvasHeight);
-        pixelDensity(2);
     }
 
     /**

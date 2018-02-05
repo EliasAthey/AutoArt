@@ -61,7 +61,7 @@ public class Texture {
      * @param shape the shape
      */
     public void setShape(String shape){
-        this.shape = shape;
+        this.shape = shape.trim();
     }
 
     /**
@@ -69,7 +69,7 @@ public class Texture {
      * @param radius the radius as a pixel-width
      */
     public void setShapeRadius(String radius){
-        this.shapeRadius = Integer.parseInt(radius);
+        this.shapeRadius = Integer.parseInt(radius.trim());
     }
 
     /**
@@ -78,9 +78,9 @@ public class Texture {
      */
     public void setFirstColor(String rgb){
         String[] values = rgb.split(",");
-        this.firstColor[0] = Integer.parseInt(values[0]);
-        this.firstColor[1] = Integer.parseInt(values[1]);
-        this.firstColor[2] = Integer.parseInt(values[2]);
+        this.firstColor[0] = Integer.parseInt(values[0].trim());
+        this.firstColor[1] = Integer.parseInt(values[1].trim());
+        this.firstColor[2] = Integer.parseInt(values[2].trim());
     }
 
     /**
@@ -89,9 +89,9 @@ public class Texture {
      */
     public void setSecondColor(String rgb){
         String[] values = rgb.split(",");
-        this.secondColor[0] = Integer.parseInt(values[0]);
-        this.secondColor[1] = Integer.parseInt(values[1]);
-        this.secondColor[2] = Integer.parseInt(values[2]);
+        this.secondColor[0] = Integer.parseInt(values[0].trim());
+        this.secondColor[1] = Integer.parseInt(values[1].trim());
+        this.secondColor[2] = Integer.parseInt(values[2].trim());
     }
 
     /**
@@ -99,7 +99,7 @@ public class Texture {
      * @param diveristy the diversity - float
      */
     public void setColorDiversity(String diveristy){
-        this.colorDiversity = Float.parseFloat(diveristy);
+        this.colorDiversity = Float.parseFloat(diveristy.trim());
     }
 
     /**
@@ -107,6 +107,6 @@ public class Texture {
      * @param intensity the intensity
      */
     public void setIntensity(String intensity){
-        this.intensity = Float.parseFloat(intensity);
+        this.intensity = Float.parseFloat(intensity.trim());
     }
 }

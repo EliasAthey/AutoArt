@@ -93,7 +93,7 @@ public class Structure {
 	 * @param numEdges the number of edges
 	 */
 	public void setNumEdges(String numEdges){
-		this.numEdges = Integer.parseInt(numEdges);
+		this.numEdges = Integer.parseInt(numEdges.trim());
     }
 
 	/**
@@ -101,6 +101,6 @@ public class Structure {
 	 * @param spacing the spacing as pixel-width
 	 */
 	public void setSpacing(String spacing){
-		this.spacing = Integer.parseInt(spacing);
+		this.spacing = Integer.parseInt(spacing.trim());
     }
 }
