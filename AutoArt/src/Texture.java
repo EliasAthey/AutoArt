@@ -41,13 +41,19 @@ public class Texture {
      * Paints the texture of the image using the flow
      */
     public void paintTexture(Painter painter, Flow flow){
-        painter.stroke(firstColor[0],firstColor[1],firstColor[2]);
-        painter.strokeWeight(3);
-
         // Do something for each point in the flow
         for (int[] point : flow.getPoints()) {
-            painter.point(point[0], point[1]);
+            this.drawShapeAt(point[0], point[1]);
         }
+    }
+
+    /**
+     * Draws a texture shape at the given coordinates
+     * @param xCoord the x coordinate
+     * @param yCoord the y coordinate
+     */
+    private void drawShapeAt(int xCoord, int yCoord){
+
     }
 
     /**
