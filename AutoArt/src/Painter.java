@@ -36,46 +36,33 @@ public class Painter extends PApplet{
     /**
      * The size of the character buffer used to read the parameter file
      */
-    private final int numCharsInParamFile = 100;
+    private final int numCharsInParamFile = 200;
 
 	/**
 	 * A mapping from line numbers in the parameter file to associated attribute names
 	 */
 	private final HashMap<Integer, String> fileFormat = new HashMap<Integer, String>(){
 	    {
-            // 3rd place color
-	        put(0, "bg_FirstColor");// int,int,int [0,255]
-
-            // 4th place color
-            put(1, "bg_SecondColor");// int,int,int [0,255]
-
-            // value light
-            put(2, "bg_Value");// float [0,1]
-
-            // space depth (?)
-            put(3, "bg_Intensity");// float [0,1]
-
-            // structure line iterations (I think we should randomize the start pt and vertex pts)
-            put(4, "st_NumEdges");// int
-
-            // negative space
-            put(5, "st_Spacing");// int (pixels)
-
-            // form
-            put(6, "tx_Shape");// string
-
-            // positive space
-            put(7, "tx_ShapeRadius");// int (pixels)
-
-            // 1st place color
-            put(8, "tx_FirstColor");// int,int,int [0,255]
-
-            // 2nd place color
-            put(9, "tx_SecondColor");// int,int,int [0,255]
-
-            // roughness (unsure what's meant by invented and visual)
-            put(10, "tx_ColorDiversity");// float [0,1]
-            put(11, "tx_Intensity");// float [0,1]
+	        put(0, "tx_ShapeRadius");// Size of texture shape (or thickness of line)
+	        put(1, "tx_Shape"); // Shape (or line type) used for the texture
+	        put(2, "bg_Value"); // Lightness of background
+	        put(3, "tx_ColorDiversity");// [0,1] - 0 being no diversity, 1 being lots of diversity (maybe every pixel is a different color)
+	        put(4, "bg_FirstColor"); // Colors are of the form <int,int,int> representing R,G,B values
+            put(5, "bg_SecondColor");
+            put(6, "tx_FirstColor");
+            put(7, "tx_SecondColor");
+//
+//            // space depth (?)
+//            put(3, "bg_Intensity");// float [0,1]
+//
+//            // structure line iterations (I think we should randomize the start pt and vertex pts)
+//            put(4, "st_NumEdges");// int
+//
+//            // negative space
+//            put(5, "st_Spacing");// int (pixels)
+//
+//            // Unsure what to use this for yet
+//            put(11, "tx_Intensity");// float [0,1]
 	    }
 	};
 
@@ -147,7 +134,7 @@ public class Painter extends PApplet{
                 break;
         }
         try {
-            tool.getClass().getMethod("set" + param[1], String.class).invoke(tool, valueText);
+            tool.getClass().getMethod("set" + param[1], String.class).invoke(tool, valueText.trim());
         }
         catch(NoSuchMethodException e){
             System.err.println("Invoking set" + param[1] + " on " + tool.getClass().toString() + " failed.\nNo such method.\n");

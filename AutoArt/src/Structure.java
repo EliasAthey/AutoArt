@@ -10,14 +10,14 @@ import java.util.ArrayList;
 public class Structure {
 
 	/**
-	 * Number of edges used for the structure's Flow
+	 * Number of edges used for the structure's Flow, defaults to 1
 	 */
-	private int numEdges;
+	private int numEdges = 1;
 
 	/**
-	 * The pixel-length of each edge
+	 * The pixel-length of each edge, defaults to 100
 	 */
-	private int spacing;
+	private int spacing = 100;
 
     /**
      * Creates the structure of the image by creating a Flow
@@ -93,7 +93,7 @@ public class Structure {
 	 * @param numEdges the number of edges
 	 */
 	public void setNumEdges(String numEdges){
-		this.numEdges = Integer.parseInt(numEdges.trim());
+		this.numEdges = Integer.parseInt(numEdges);
     }
 
 	/**
@@ -101,6 +101,6 @@ public class Structure {
 	 * @param spacing the spacing as pixel-width
 	 */
 	public void setSpacing(String spacing){
-		this.spacing = Integer.parseInt(spacing.trim());
+		this.spacing = Integer.parseInt(spacing);
     }
 }

@@ -8,29 +8,25 @@
 public class Texture {
 
     /**
-     * The base shape painted
+     * The base shape painted, defaults to a straight line (Angular)
      */
-    private String shape;
+    private String shape = "Angular";
 
     /**
-     * The pixel-radius of the shapes
+     * The pixel-radius of the shapes, defaults to 50
      */
-    private int shapeRadius;
+    private int shapeRadius = 50;
 
     /**
-     * The primary color of the shapes
+     * The colors of the texture shapes, defaults to white and black respectively
      */
-    private int[] firstColor = new int[3];
+    private int[] firstColor = {255,255,255};
+    private int[] secondColor = {0,0,0};
 
     /**
-     * The secondary color of the shapes
+     * The variance in color of the shapes, defaults to 0
      */
-    private int[] secondColor = new int[3];
-
-    /**
-     * The variance in color of the shapes
-     */
-    private float colorDiversity;
+    private float colorDiversity = 0.0f;
 
     /**
      * TODO Unsure what to use this for yet
@@ -61,7 +57,7 @@ public class Texture {
      * @param shape the shape
      */
     public void setShape(String shape){
-        this.shape = shape.trim();
+        this.shape = shape;
     }
 
     /**
@@ -69,7 +65,7 @@ public class Texture {
      * @param radius the radius as a pixel-width
      */
     public void setShapeRadius(String radius){
-        this.shapeRadius = Integer.parseInt(radius.trim());
+        this.shapeRadius = Integer.parseInt(radius);
     }
 
     /**
@@ -78,9 +74,9 @@ public class Texture {
      */
     public void setFirstColor(String rgb){
         String[] values = rgb.split(",");
-        this.firstColor[0] = Integer.parseInt(values[0].trim());
-        this.firstColor[1] = Integer.parseInt(values[1].trim());
-        this.firstColor[2] = Integer.parseInt(values[2].trim());
+        this.firstColor[0] = Integer.parseInt(values[0]);
+        this.firstColor[1] = Integer.parseInt(values[1]);
+        this.firstColor[2] = Integer.parseInt(values[2]);
     }
 
     /**
@@ -89,9 +85,9 @@ public class Texture {
      */
     public void setSecondColor(String rgb){
         String[] values = rgb.split(",");
-        this.secondColor[0] = Integer.parseInt(values[0].trim());
-        this.secondColor[1] = Integer.parseInt(values[1].trim());
-        this.secondColor[2] = Integer.parseInt(values[2].trim());
+        this.secondColor[0] = Integer.parseInt(values[0]);
+        this.secondColor[1] = Integer.parseInt(values[1]);
+        this.secondColor[2] = Integer.parseInt(values[2]);
     }
 
     /**
@@ -99,7 +95,7 @@ public class Texture {
      * @param diveristy the diversity - float
      */
     public void setColorDiversity(String diveristy){
-        this.colorDiversity = Float.parseFloat(diveristy.trim());
+        this.colorDiversity = Float.parseFloat(diveristy);
     }
 
     /**
@@ -107,6 +103,6 @@ public class Texture {
      * @param intensity the intensity
      */
     public void setIntensity(String intensity){
-        this.intensity = Float.parseFloat(intensity.trim());
+        this.intensity = Float.parseFloat(intensity);
     }
 }
