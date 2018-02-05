@@ -10,12 +10,12 @@ public class Texture {
     /**
      * The base shape painted, defaults to a straight line (Angular)
      */
-    private String shape = "Angular";
+    private String shape = "angular";
 
     /**
      * The pixel-radius of the shapes, defaults to 50
      */
-    private int shapeRadius = 50;
+    private int shapeRadius = 100;
 
     /**
      * The colors of the texture shapes, defaults to white and black respectively
@@ -37,19 +37,54 @@ public class Texture {
      * Paints the texture of the image using the flow
      */
     public void paintTexture(Painter painter, Flow flow){
-        // Do something for each point in the flow
-        for (int[] point : flow.getPoints()) {
-            this.drawShapeAt(point[0], point[1]);
-        }
+    	// Fill in texture shapes with the first color
+    	painter.fill(this.firstColor[0], this.firstColor[1], this.firstColor[2]);
+
+    	// if the shape is a line form
+    	if(this.shape.equals("angular") || this.shape.equals("curve")){
+
+	    }
+	    // else if its just a normal shape, and draw a shape at each flow vertex
+	    else{
+		    for (int[] point : flow.getPoints()) {
+			    this.drawShapeAt(painter, point[0], point[1]);
+		    }
+	    }
     }
 
     /**
      * Draws a texture shape at the given coordinates
+     * @param painter the painter
      * @param xCoord the x coordinate
      * @param yCoord the y coordinate
      */
-    private void drawShapeAt(int xCoord, int yCoord){
+    private void drawShapeAt(Painter painter, int xCoord, int yCoord){
+		switch(this.shape){
+			case "circle":
+				painter.ellipse(xCoord, yCoord, this.shapeRadius, this.shapeRadius);
+				break;
 
+			case "square":
+				break;
+		}
+    }
+
+	/**
+	 * Draws a line form between the given coordinates
+	 * @param painter the painter
+	 * @param startX the starting x coordinate
+	 * @param startY the starting y coordinate
+	 * @param endX the ending x coordinate
+	 * @param endY the ending y coordinate
+	 */
+	private void drawLineFrom(Painter painter, int startX, int startY, int endX, int endY){
+		switch(this.shape){
+			case "angular":
+				break;
+
+			case "curve":
+				break;
+		}
     }
 
     /**

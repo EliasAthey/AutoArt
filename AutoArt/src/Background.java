@@ -16,7 +16,7 @@ public class Background {
 	/**
 	 * The value (brightness) of the background, defaults to 50%
 	 */
-	private float value = 0.5f;
+	private int value = 128;
 
     /**
      * How strong/steep the gradient is, defaults to 50%
@@ -27,7 +27,9 @@ public class Background {
      * Paints the background
      */
     public void paintBackground(Painter painter){
-        painter.background(this.firstColor[0], this.firstColor[1], this.firstColor[2]);
+        painter.background(0,0,0);
+        painter.fill(this.firstColor[0], this.firstColor[1], this.firstColor[2],255 - this.value);
+        painter.rect(-1,-1,painter.getCanvasWidth() + 1, painter.getCanvasHeight() + 1);
     }
 
 	/**
@@ -57,7 +59,7 @@ public class Background {
 	 * @param value the value (ligthness)
 	 */
 	public void setValue(String value){
-		this.value = Float.parseFloat(value);
+		this.value = Integer.parseInt(value);
     }
 
 	/**

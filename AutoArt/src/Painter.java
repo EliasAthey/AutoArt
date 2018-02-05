@@ -45,7 +45,7 @@ public class Painter extends PApplet{
 	    {
 	        put(0, "tx_ShapeRadius");// Size of texture shape (or thickness of line)
 	        put(1, "tx_Shape"); // Shape (or line type) used for the texture
-	        put(2, "bg_Value"); // Lightness of background
+	        put(2, "bg_Value"); // Lightness of background [0,255]
 	        put(3, "tx_ColorDiversity");// [0,1] - 0 being no diversity, 1 being lots of diversity (maybe every pixel is a different color)
 	        put(4, "bg_FirstColor"); // Colors are of the form <int,int,int> representing R,G,B values
             put(5, "bg_SecondColor");
@@ -182,6 +182,6 @@ public class Painter extends PApplet{
         this.background.paintBackground(this);
         Flow flow = this.structure.createStructure(this);
         this.texture.paintTexture(this, flow);
-        save("img.jpg");
+        save("img.png");
     }
 }
