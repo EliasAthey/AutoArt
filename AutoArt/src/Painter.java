@@ -25,7 +25,7 @@ public class Painter extends PApplet{
     /**
      * The size of the Painter's canvas
      */
-    private final int canvasWidth = 1080;
+    private final int canvasWidth = 720;
     private final int canvasHeight = 720;
 
     /**
@@ -34,9 +34,9 @@ public class Painter extends PApplet{
     private final String paramFilePath = "params.aa";
 
     /**
-     * The size of the character buffer used to read the parameter file
+     * The size of the character buffer used to read the parameter file, set very large to account for comments
      */
-    private final int numCharsInParamFile = 200;
+    private final int numCharsInParamFile = 10000;
 
 	/**
 	 * A mapping from line numbers in the parameter file to associated attribute names
@@ -101,7 +101,8 @@ public class Painter extends PApplet{
             }
             String[] lines = String.copyValueOf(fileContents).split("\n");
             for(int lineIter = 0; lineIter < lines.length; lineIter++){
-                this.setParam(lines[lineIter], this.fileFormat.get(lineIter));
+                String line = lines[lineIter].split(" ")[0].trim();
+                this.setParam(line, this.fileFormat.get(lineIter));
             }
         }
         catch(FileNotFoundException e){

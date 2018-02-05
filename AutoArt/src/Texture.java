@@ -37,15 +37,48 @@ public class Texture {
      * Paints the texture of the image using the flow
      */
     public void paintTexture(Painter painter, Flow flow){
-    	// Fill in texture shapes with the first color
-    	painter.fill(this.firstColor[0], this.firstColor[1], this.firstColor[2]);
 
-    	// if the shape is a line form
-    	if(this.shape.equals("angular") || this.shape.equals("curve")){
+    	// if the shape is a line form, draw a line from each vertex to the next. Either straight (angular) or curved.
+    	if(this.shape.equals("angular")){
+    		// set line specific parameters
+		    painter.strokeWeight(this.shapeRadius);
+		    painter.stroke(this.firstColor[0], this.firstColor[1], this.firstColor[2]);
+		    painter.noFill();
 
+		    int[] prevPoint = flow.getPoints().get(0);
+		    for(int pointIter = 1; pointIter < flow.getPoints().size(); pointIter++){
+			    int[] nextPoint = flow.getPoints().get(pointIter);
+			    painter.line(prevPoint[0], prevPoint[1], nextPoint[0], nextPoint[1]);
+			    prevPoint = nextPoint;
+		    }
 	    }
-	    // else if its just a normal shape, and draw a shape at each flow vertex
+	    else if(this.shape.equals("curve")){
+    		// set curve specific parameters
+		    painter.strokeWeight(this.shapeRadius);
+		    painter.stroke(this.firstColor[0], this.firstColor[1], this.firstColor[2]);
+		    painter.noFill();
+
+		    int[] prevPoint = flow.getPoints().get(0);
+		    int[] prevControl = prevPoint;
+		    for(int pointIter = 1; pointIter < flow.getPoints().size(); pointIter++){
+
+		    	// set the ending point and ending control point (the next point after end point)
+			    int[] nextPoint = flow.getPoints().get(pointIter);
+			    int[] nextControl;
+			    if(pointIter < flow.getPoints().size() - 1){
+			    	nextControl = flow.getPoints().get(pointIter + 1);
+			    }
+			    else{
+			    	nextControl = flow.getPoints().get(pointIter);
+			    }
+			    painter.curve(prevControl[0], prevControl[1], prevPoint[0], prevPoint[1], nextPoint[0], nextPoint[1], nextControl[0], nextControl[1]);
+			    prevControl = prevPoint;
+			    prevPoint = nextPoint;
+		    }
+	    }
+	    // else if its just a normal shape, draw a shape at each flow vertex
 	    else{
+    		painter.fill(this.firstColor[0], this.firstColor[1], this.firstColor[2]);
 		    for (int[] point : flow.getPoints()) {
 			    this.drawShapeAt(painter, point[0], point[1]);
 		    }
@@ -65,24 +98,9 @@ public class Texture {
 				break;
 
 			case "square":
-				break;
-		}
-    }
-
-	/**
-	 * Draws a line form between the given coordinates
-	 * @param painter the painter
-	 * @param startX the starting x coordinate
-	 * @param startY the starting y coordinate
-	 * @param endX the ending x coordinate
-	 * @param endY the ending y coordinate
-	 */
-	private void drawLineFrom(Painter painter, int startX, int startY, int endX, int endY){
-		switch(this.shape){
-			case "angular":
-				break;
-
-			case "curve":
+				int startX = xCoord - (int)(0.5 * this.shapeRadius);
+				int startY = yCoord - (int)(0.5 * this.shapeRadius);
+				painter.rect(startX, startY, this.shapeRadius, this.shapeRadius);
 				break;
 		}
     }
