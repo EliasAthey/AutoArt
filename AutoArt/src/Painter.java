@@ -183,6 +183,6 @@ public class Painter extends PApplet{
         this.background.paintBackground(this);
         Flow flow = this.structure.createStructure(this);
         this.texture.paintTexture(this, flow);
-        save("img.png");
+        save("aa_image.png");
     }
 }
