@@ -15,7 +15,10 @@ def main():
 	convert(sys.argv[1])
 	
 	# Run the Processing JAR to generate an image
-	proc.run(["java", "-jar", "AutoArt.jar"])
+	try:
+		proc.run(["java", "-jar", "AutoArt.jar"])
+	except:
+		proc.run(["java.exe", "-jar", "AutoArt.jar"])
 
 
 # Converts the answers.txt file
