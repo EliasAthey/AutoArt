@@ -2,6 +2,9 @@
  * AutoArt is licensed under the GPL 3.0. Written by Elias Athey and Tia Smith.
  */
 
+import static processing.core.PConstants.CENTER;
+import static processing.core.PConstants.TWO_PI;
+
 /**
  * The Texture class paints shapes on the path (flow) created by the Structure class.
  */
@@ -95,17 +98,31 @@ public class Texture {
      * @param yCoord the y coordinate
      */
     private void drawShapeAt(Painter painter, int xCoord, int yCoord){
+
+    	// set the shape width, height, and rotation
+		int width = this.shapeRadius + (int)(Math.random() * painter.getCanvasWidth() / 10);
+		int height = this.shapeRadius + (int)(Math.random() * painter.getCanvasHeight() / 25);
+		float rotation = (float)(Math.random() * TWO_PI);
+
+		// rotate the canvas accordingly
+		painter.translate(xCoord, yCoord);
+		painter.rotate(rotation);
+
 		switch(this.shape){
 			case "circle":
-				painter.ellipse(xCoord, yCoord, this.shapeRadius, this.shapeRadius);
+				painter.ellipseMode(CENTER);
+				painter.ellipse(0, 0, width, height);
 				break;
 
 			case "square":
-				int startX = xCoord - (int)(0.5 * this.shapeRadius);
-				int startY = yCoord - (int)(0.5 * this.shapeRadius);
-				painter.rect(startX, startY, this.shapeRadius, this.shapeRadius);
+				painter.rectMode(CENTER);
+				painter.rect(0, 0, width, height);
 				break;
 		}
+
+		// return the canvas to its original orientation
+		painter.rotate(-rotation);
+		painter.translate(-xCoord, -yCoord);
     }
 
     /**

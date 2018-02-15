@@ -2,7 +2,7 @@
 # Authors: Tia Smith and Elias Athey
 # Date: 2/4/18
 
-import os.path
+import os
 import sys
 import subprocess as proc
 
@@ -19,6 +19,9 @@ def main():
 		proc.run(["java", "-jar", "AutoArt.jar"])
 	except:
 		proc.run(["java.exe", "-jar", "AutoArt.jar"])
+
+        # Remove temporary params file
+	os.remove("params.aa")
 
 
 # Converts the answers.txt file
