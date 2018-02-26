@@ -13,23 +13,23 @@ public class Texture {
     /**
      * The base shape painted, defaults to a straight line (Angular)
      */
-    private String shape = "angular";
+    private String shape;
 
     /**
      * The pixel-radius of the shapes, defaults to 50
      */
-    private int shapeRadius = 50;
+    private int shapeRadius;
 
     /**
      * The colors of the texture shapes, defaults to white and black respectively
      */
-    private int[] firstColor = {255,255,255};
-    private int[] secondColor = {0,0,0};
+    private int[] firstColor = new int[3];
+    private int[] secondColor = new int[3];
 
     /**
      * The variance in color of the shapes, defaults to 0
      */
-    private float colorDiversity = 0.0f;
+    private float colorDiversity;
 
     /**
      * TODO Unsure what to use this for yet

@@ -1,6 +1,7 @@
 /AutoArt/.idea/
 /AutoArt/AutoArt.iml
 /AutoArt/out/
+/AutoArt/src/META-INF/
 *.jpg
 *.png
 *.txt

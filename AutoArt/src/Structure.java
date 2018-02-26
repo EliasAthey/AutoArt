@@ -12,12 +12,12 @@ public class Structure {
 	/**
 	 * Number of edges used for the structure's Flow, defaults to 1
 	 */
-	private int numEdges = 7;
+	private int numEdges;
 
 	/**
 	 * The pixel-length of each edge, defaults to 100
 	 */
-	private int spacing = 200;
+	private int spacing;
 
     /**
      * Creates the structure of the image by creating a Flow

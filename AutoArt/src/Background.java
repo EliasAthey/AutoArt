@@ -12,18 +12,18 @@ public class Background {
     /**
      * The colors of the background, defaults to black and white respectively
      */
-    private int[] firstColor = {0,0,0};
-	private int[] secondColor = {255,255,255};
+    private int[] firstColor = new int[3];
+	private int[] secondColor = new int[3];
 
 	/**
 	 * The value (brightness) of the background, defaults to 50%
 	 */
-	private int value = 128;
+	private int value;
 
     /**
      * How strong/steep the gradient is, defaults to 50%
      */
-    private float intensity = 0.0f;
+    private float intensity;
 
     /**
      * Paints the background
