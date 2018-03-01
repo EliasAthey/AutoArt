@@ -50,14 +50,14 @@ public class Driver {
 				 */
 				case 0:
 					if(ans == 'a'){
-						Painter.attributes.put("bg_Value","250");
+						Painter.attributes.put("bg_Value","1.0");
 					}
 					else if(ans == 'b'){
-						Painter.attributes.put("bg_Value","128");
+						Painter.attributes.put("bg_Value","0.5");
 
 					}
 					else if(ans == 'c'){
-						Painter.attributes.put("bg_Value","50");
+						Painter.attributes.put("bg_Value","0");
 					}
 					break;
 				/**
