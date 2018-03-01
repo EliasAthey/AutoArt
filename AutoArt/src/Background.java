@@ -18,7 +18,7 @@ public class Background {
 	/**
 	 * The value (brightness) of the background, defaults to 50%
 	 */
-	private int value;
+	private float value;
 
     /**
      * How strong/steep the gradient is, defaults to 50%
@@ -93,7 +93,7 @@ public class Background {
 	 * @param value the value (ligthness)
 	 */
 	public void setValue(String value){
-		this.value = Integer.parseInt(value);
+		this.value = Float.parseFloat(value);
     }
 
 	/**
