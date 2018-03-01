@@ -1,4 +1,3 @@
-import javax.sound.midi.SysexMessage;
 import java.io.*;
 
 /**
@@ -9,7 +8,7 @@ public class Driver {
 	/**
 	 * Array of answers read from file
 	 */
-	private static char[] answers = new char[8];
+	private static char[] answers = new char[12];
 
 	public static void main(String[] args){
 		Driver.setAnswers(args[0]);
@@ -42,142 +41,163 @@ public class Driver {
 	 * Convert values in answers array to values in the Painter hashmap
 	 */
 	private static void convertAnswers(){
-		boolean lineShape = false;
-
 		for(int ansIter = 0; ansIter < Driver.answers.length; ansIter++){
 			char ans = Driver.answers[ansIter];
 
-			// Each answer has a different effect on the values set
 			switch(ansIter){
+				/**
+				 * BG Value
+				 */
 				case 0:
-					/**
-					 * if a: radius = 25 and shape = square
-					 * if b: radius = 50 and shape = circle
-					 * if c: radius = 7
-					 */
 					if(ans == 'a'){
-						Painter.attributes.put("tx_ShapeRadius","25");
+						Painter.attributes.put("bg_Value","250");
+					}
+					else if(ans == 'b'){
+						Painter.attributes.put("bg_Value","128");
+
+					}
+					else if(ans == 'c'){
+						Painter.attributes.put("bg_Value","50");
+					}
+					break;
+				/**
+				 * BG Intensity
+				 */
+				case 1:
+					if(ans == 'a'){
+						Painter.attributes.put("bg_Intensity","0");
+					}
+					else if(ans == 'b'){
+						Painter.attributes.put("bg_Intensity","0.5");
+
+					}
+					else if(ans == 'c'){
+						Painter.attributes.put("bg_Intensity","1.0");
+					}
+					break;
+				/**
+				 * BG Primary Color
+				 */
+				case 2:
+					if(ans == 'a'){
+						Painter.attributes.put("bg_FirstColor","180,0,0");// red
+					}
+					else if(ans == 'b'){
+						Painter.attributes.put("bg_FirstColor","0,0,180");// blue
+					}
+					break;
+				/**
+				 * BG Secondary Color
+				 */
+				case 3:
+					if(ans == 'a'){
+						Painter.attributes.put("bg_SecondColor","210,180,0");// yellow
+					}
+					else if(ans == 'b'){
+						Painter.attributes.put("bg_SecondColor","0,180,0");// green
+					}
+					break;
+				/**
+				 * TX Primary Color
+				 */
+				case 4:
+					if(ans == 'a'){
+						Painter.attributes.put("tx_FirstColor","0,0,0");// black
+					}
+					else if(ans == 'b'){
+						Painter.attributes.put("tx_FirstColor","255,255,255");// white
+					}
+					break;
+				/**
+				 * TX Secondary Color
+				 */
+				case 5:
+					if(ans == 'a'){
+						Painter.attributes.put("tx_SecondColor","110,0,150");// purple
+					}
+					else if(ans == 'b'){
+						Painter.attributes.put("tx_SecondColor","255,100,0");// orange
+					}
+					break;
+				/**
+				 * TX Intensity
+				 */
+				case 6:
+					if(ans == 'a'){
+						Painter.attributes.put("tx_Intensity","0");
+					}
+					else if(ans == 'b'){
+						Painter.attributes.put("tx_Intensity","0.5");
+					}
+					else if(ans =='c'){
+						Painter.attributes.put("tx_Intensity","1.0");
+					}
+					break;
+				/**
+				 * ST Num Edges
+				 */
+				case 7:
+					if(ans == 'a'){
+						Painter.attributes.put("st_NumEdges","2");
+					}
+					else if(ans == 'b'){
+						Painter.attributes.put("st_NumEdges","7");
+					}
+					else if(ans =='c'){
+						Painter.attributes.put("st_NumEdges","15");
+					}
+					break;
+				/**
+				 * ST Spacing
+				 */
+				case 8:
+					if(ans == 'a'){
+						Painter.attributes.put("st_Spacing","100");// spacious
+					}
+					else if(ans == 'b'){
+						Painter.attributes.put("st_Spacing","200");// medium
+					}
+					else if(ans =='c'){
+						Painter.attributes.put("st_Spacing","350");// cramped
+					}
+					break;
+				/**
+				 * TX Shape Radius
+				 */
+				case 9:
+					if(ans == 'a'){
+						Painter.attributes.put("tx_ShapeRadius","100");// large
+					}
+					else if(ans == 'b'){
+						Painter.attributes.put("tx_ShapeRadius","50");// medium
+					}
+					else if(ans =='c'){
+						Painter.attributes.put("tx_ShapeRadius","25");// small
+					}
+					break;
+				/**
+				 * TX Shape
+				 */
+				case 10:
+					if(ans == 'a'){
 						Painter.attributes.put("tx_Shape","square");
 					}
 					else if(ans == 'b'){
-						Painter.attributes.put("tx_ShapeRadius","50");
 						Painter.attributes.put("tx_Shape","circle");
-
-					}
-					else if(ans == 'c'){
-						Painter.attributes.put("tx_ShapeRadius","75");
-						lineShape = true;
 					}
 					break;
-				case 1:
-					/**
-					 * if a: bg_Value = 0
-					 * if b: bg_Value = 50
-					 * if c: bg_Value = 87
-					 * if d: bg_Value = 167
-					 * if e: bg_Value = 209
-					 * if f: bg_Value = 255
-					 */
+				/**
+				 * TX Color Diversity
+				 */
+				case 11:
 					if(ans == 'a'){
-						Painter.attributes.put("bg_Value","0");
-					}
-					else if(ans == 'b'){
-						Painter.attributes.put("bg_Value","50");
-
-					}
-					else if(ans == 'c'){
-						Painter.attributes.put("bg_Value","87");
-					}
-					else if(ans == 'd'){
-						Painter.attributes.put("bg_Value","167");
-					}
-					else if(ans == 'e'){
-						Painter.attributes.put("bg_Value","209");
-					}
-					else if(ans == 'f'){
-						Painter.attributes.put("bg_Value","255");
-					}
-					break;
-				case 2:
-					/**
-					 * if a: shape = angular
-					 * if b shape = curve
-					 */
-					if(lineShape){
-						if(ans == 'a'){
-							Painter.attributes.put("tx_Shape","angular");
-						}
-						else if(ans == 'b'){
-							Painter.attributes.put("tx_Shape","curve");
-						}
-					}
-					break;
-				case 3:
-					/**
-					 * if a: tx_ColorDiversity = 0.25
-					 * if b: tx_ColorDiversity = 0.5
-					 * if c: tx_ColorDiversity = 0.75
-					 * if d: tx_ColorDiversity = 1.0
-					 */
-					if(ans == 'a'){
-						Painter.attributes.put("tx_ColorDiversity","0.25");
+						Painter.attributes.put("tx_ColorDiversity","0.0");
 					}
 					else if(ans == 'b'){
 						Painter.attributes.put("tx_ColorDiversity","0.5");
 					}
-					else if(ans == 'c'){
-						Painter.attributes.put("tx_ColorDiversity","0.75");
-					}
-					else if(ans == 'd'){
+					else if(ans =='c'){
 						Painter.attributes.put("tx_ColorDiversity","1.0");
-					}
-					break;
-				case 4:
-					/**
-					 * if a: bg_FirstColor = 255,0,0 (red)
-					 * if b: bg_FirstColor = 255,215,0 (yellow)
-					 */
-					if(ans == 'a'){
-						Painter.attributes.put("bg_FirstColor","255,0,0");
-					}
-					else if(ans == 'b'){
-						Painter.attributes.put("bg_FirstColor","255,215,0");
-					}
-					break;
-				case 5:
-					/**
-					 * if a: bg_SecondColor = 0,0,255 (blue)
-					 * if b: bg_SecondColor = 128,0,128 (purple)
-					 */
-					if(ans == 'a'){
-						Painter.attributes.put("bg_SecondColor","0,0,255");
-					}
-					else if(ans == 'b'){
-						Painter.attributes.put("bg_SecondColor","128,0,128");
-					}
-					break;
-				case 6:
-					/**
-					 * if a: tx_FirstColor = 0,0,0 (black)
-					 * if b: tx_FirstColor = 255,255,255 (white)
-					 */
-					if(ans == 'a'){
-						Painter.attributes.put("tx_FirstColor","0,0,0");
-					}
-					else if(ans == 'b'){
-						Painter.attributes.put("tx_FirstColor","255,255,255");
-					}
-					break;
-				case 7:
-					/**
-					 * if a: tx_SecondColor = 255,165,0 (orange)
-					 * if b: tx_SecondColor = 0,128,0 (green)
-					 */
-					if(ans == 'a'){
-						Painter.attributes.put("tx_SecondColor","255,165,0");
-					}
-					else if(ans == 'b'){
-						Painter.attributes.put("tx_SecondColor","0,128,0");
 					}
 					break;
 				default:
