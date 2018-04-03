@@ -203,6 +203,12 @@ public class Driver {
 					else if(ans == 'b'){
 						Painter.attributes.put("tx_Shape","circle");
 					}
+					else if(ans == 'c'){
+						Painter.attributes.put("tx_Shape","angular");
+					}
+					else if(ans == 'd'){
+						Painter.attributes.put("tx_Shape","curve");
+					}
 					break;
 				/**
 				 * TX Color Diversity
