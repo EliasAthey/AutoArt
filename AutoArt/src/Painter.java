@@ -21,8 +21,8 @@ public class Painter extends PApplet{
     /**
      * The size of the Painter's canvas
      */
-    private final int canvasWidth = 720;
-    private final int canvasHeight = 720;
+    private final int canvasWidth;
+    private final int canvasHeight;
 
 	/**
 	 * A mapping from attribute names to their values, here set to their default values
@@ -49,7 +49,9 @@ public class Painter extends PApplet{
     /**
      * Private constructor that creates the painter and tools
      */
-    public Painter(){
+    public Painter(int width, int height){
+        this.canvasWidth = width;
+        this.canvasHeight = height;
         this.background = new Background();
         this.structure = new Structure();
         this.texture = new Texture();

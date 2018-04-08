@@ -81,11 +81,17 @@ public class Texture {
 	    }
 	    // else if its just a normal shape, draw a shape at each flow vertex
 	    else{
-    		// shape specific parameters
-    		painter.fill(this.firstColor[0], this.firstColor[1], this.firstColor[2]);
+		    int[] color = {this.firstColor[0], this.firstColor[1], this.firstColor[2]};
     		painter.noStroke();
 
 		    for (int[] point : flow.getPoints()) {
+			    // set color of shape
+			    if(Math.random() + 0.5 < this.colorDiversity){
+				    color[0] = this.secondColor[0];
+				    color[1] = this.secondColor[1];
+				    color[2] = this.secondColor[2];
+			    }
+			    painter.fill(color[0], color[1], color[2]);
 			    this.drawShapeAt(painter, point[0], point[1]);
 		    }
 	    }

@@ -13,7 +13,25 @@ public class Driver {
 	public static void main(String[] args){
 		Driver.setAnswers(args[0]);
 		Driver.convertAnswers();
-		Painter painter = new Painter();
+
+		// width of canvas, defaults to 720
+		int width;
+		try{
+			width = Integer.parseInt(args[1]);
+		}
+		catch(ArrayIndexOutOfBoundsException e){
+			width = 720;
+		}
+		// height of canvas, defaults to 720
+		int height;
+		try{
+			height = Integer.parseInt(args[2]);
+		}
+		catch(ArrayIndexOutOfBoundsException e){
+			height = 720;
+		}
+
+		Painter painter = new Painter(width, height);
 		painter.paint();
 	}
 
@@ -184,6 +202,12 @@ public class Driver {
 					}
 					else if(ans == 'b'){
 						Painter.attributes.put("tx_Shape","circle");
+					}
+					else if(ans == 'c'){
+						Painter.attributes.put("tx_Shape","angular");
+					}
+					else if(ans == 'd'){
+						Painter.attributes.put("tx_Shape","curve");
 					}
 					break;
 				/**
