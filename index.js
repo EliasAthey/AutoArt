@@ -35,7 +35,7 @@ fs.readFile('questions.html', function(err, file){
 				}
 
 				// run AutoArt JAR on answers file
-				proc.execSync('java.exe -jar AutoArt.jar answers.txt', (err, stdout, stderr) => {
+				proc.execSync('java -jar AutoArt.jar answers.txt', (err, stdout, stderr) => {
 					if(err) throw err;
 					console.log(stdout);
 					console.log(stderr);
