@@ -229,6 +229,5 @@ public class Driver {
 					System.exit(1);
 			}
 		}
-		System.out.println(Painter.attributes.toString());
 	}
 }
