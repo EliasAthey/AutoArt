@@ -2,11 +2,38 @@
 <html>
 	<head>
 		<title>AutoArt Questionnaire</title>
+		<script type="text/javascript">
+			function genArt(){
+				var form = document.getElementById("questions");
+				var answer = form.q1.value;
+				answer = answer + form.q2.value;
+				answer = answer + form.q3.value;
+				answer = answer + form.q4.value;
+				answer = answer + form.q5.value;
+				answer = answer + form.q6.value;
+				answer = answer + form.q7.value;
+				answer = answer + form.q8.value;
+				answer = answer + form.q9.value;
+				answer = answer + form.q10.value;
+				answer = answer + form.q11.value;
+				answer = answer + form.q12.value;
+				
+				var blob = new Blob([answer], {type:"text/plain;charset=utf-8"});
+				var url = window.URL.createObjectURL(blob);
+				var download = document.createElement("a");
+				download.download = "answers.txt";
+				download.href = url;
+				download.style.display = "none";
+				document.body.appendChild(download);
+				download.click()
+				document.body.removeChild(download);
+			}
+		</script>
 	</head>
 	<body>
 		<h1>AutoArt Questionnaire</h1><br>
 		<h2>1) If you were given two hours a day to do whatever you wanted, when would those hours be?</h2>
-		<form action="" method="">
+		<form action="" method="post" id="questions">
 			<input type="radio" name="q1" value="a">8:00 am - 10:00 am<br>
 			<input type="radio" name="q1" value="b">12:00 pm - 2:00 pm<br>
 			<input type="radio" name="q1" value="c">8:00 pm - 10:00 pm
@@ -20,17 +47,17 @@
 			<input type="radio" name="q3" value="a">Take risks<br>
 			<input type="radio" name="q3" value="b">Stay safe<br>
 
-			<h2>4) In tough times do you more often get through obstacles with hopefulness or reflection?</h2>
-			<input type="radio" name="q4" value="a">Hopefullness<br>
+			<h2>4) Do you prefer to overcome challenges by pushing through with energy and optimism, or taking a more careful approach by reflecting on past experiences?</h2>
+			<input type="radio" name="q4" value="a">Energy and optimism<br>
 			<input type="radio" name="q4" value="b">Reflection<br>
 
 			<h2>5) Would you rather be innocent or mysterious?</h2>
 			<input type="radio" name="q5" value="a">Mysterious<br>
 			<input type="radio" name="q5" value="b">Innocent<br>
 
-			<h2>6) Would others describe you as wise or adventurous?</h2>
-			<input type="radio" name="q6" value="a">Wise<br>
-			<input type="radio" name="q6" value="b">Adventurous<br>
+			<h2>6) Would you rather read any book in the world or travel any place in the world?</h2>
+			<input type="radio" name="q6" value="a">Read any book<br>
+			<input type="radio" name="q6" value="b">Travel any place<br>
 
 			<h2>7) How would you describe your work?</h2>
 			<input type="radio" name="q7" value="a">Detail oriented, perfect<br>
@@ -44,7 +71,7 @@
 
 			<h2>9) Which best describes you in a room full of people?</h2>
 			<input type="radio" name="q9" value="a">Chat with someone you find standing near the perimeter of the room<br>
-			<input type="radio" name="q9" value="b">Talk with a couple of people, make your way to the middle of the room<br>
+			<input type="radio" name="q9" value="b">Talk with a few people, make your way to the middle of the room<br>
 			<input type="radio" name="q9" value="c">Walk to the center of the room to say hi
 
 			<h2>10) You attend a sunset concert, where are you?</h2>
@@ -53,16 +80,18 @@
 			<input type="radio" name="q10" value="c">The back, you can see the whole view of the sunset but the performers are just a small part of the view
 
 			<h2>11) How would you describe yourself in terms of making plans and keeping them?</h2>
-			<input type="radio" name="q11" value="a">If you make a plan, you do it, and never bail, even if you&#39d rather eat brownies at home and watch Mean Girls<br>
+			<input type="radio" name="q11" value="a">If you make a plan, you do it, and never bail even if you&#39d rather eat brownies at home and watch Mean Girls<br>
 			<input type="radio" name="q11" value="b">Plans are flexible, something else might come up, or you might just feel like relaxing that night, it&#39s okay to reschedule<br>
+			<input type="radio" name="q11" value="c">You never make plans, you would rather do something spontaneous last minute<br>
+			<input type="radio" name="q11" value="d">You are always the one to make plans<br>
 
 			<h2>12) Where would you rather live?</h2>
 			<input type="radio" name="q12" value="a">A small town with a few good family and friends<br>
-			<input type="radio" name="q12" value="b">A average place with things to do but not over the top<br>
-			<input type="radio" name="q12" value="c">Hustle and bustle of a big city with lots of different people and cultures
+			<input type="radio" name="q12" value="b">A medium sized town with plenty of things to do but not over the top<br>
+			<input type="radio" name="q12" value="c">A hustling and bustling city with lots of different people and cultures
 
 			<br><br>
-			<input type="submit" value="Generate Art">
+			<button onclick="genArt()">Generate Art</button>
 		</form>
 
 
